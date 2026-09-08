@@ -23,3 +23,4 @@ for (var i = 0; i < n; i++) {
     result += "<br>";
 }
 ```
+![Alt homework5](./images/2026-09-08-151956.png)
