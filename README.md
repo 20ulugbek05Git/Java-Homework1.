@@ -1,5 +1,5 @@
 # OOP2026
-### Homework1
+### Homework10
 ```Java
 import java.util.Scanner;
 
