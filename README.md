@@ -1,4 +1,10 @@
 # OOP2026
+### Homework1
+```Java
+jjj
+```
+![Alt homework5](./images/2026-09-08-151956.png)
+
 ### Homework5
 ```Java
 var n = 10;
