@@ -13,7 +13,7 @@ public class Homework1{
   }
 }
 ```
-![Alt homework5](./images/2026-09-08-151956.png)
+![Alt homework5](./images/2026-09-21-143847.png)
 
 ### Homework5
 ```Java
