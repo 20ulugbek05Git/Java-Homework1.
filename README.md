@@ -15,6 +15,22 @@ public class Homework1{
 ```
 ![Alt homework5](./images/2026-09-21-143847.png)
 
+### Homework2
+```Java
+public class Homework1{
+  public static void main(String []args){
+    int i, j;
+    for(i=0; i<10; i++) {
+      for(j=0; j<10; j++) {
+        System.out.print("#");
+      }
+      System.out.println("");
+    }
+  }
+}
+```
+![Alt homework5](./images/2026-09-21-143847.png)
+
 ### Homework5
 ```Java
 var n = 10;
