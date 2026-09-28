@@ -79,29 +79,45 @@ public class HelloWorld {
 
 ### Homework5
 ```Java
-var n = 10;
-var binomial = [];
-
-for (var i = 0; i < n; i++) {
-    binomial[i] = [];
-    for (var j = 0; j <= i; j++) {
-        if (j === 0 || j === i) {
-            binomial[i][j] = 1;
-        } else {
-            binomial[i][j] = binomial[i - 1][j - 1] + binomial[i - 1][j];
+public class HelloWorld {
+    public static void main(String[] args) {
+      
+        int i;
+     double j=0;
+        int h=0;
+  
+        double a=0;
+      
+        for(i=1; i<1000;i++) {
+        
+        	if(i%2==1){
+                
+                j=4.0/(h*2+1);
+                h++;
+               a+=j;
+               
+                    
+            }
+            
+        	if(i%2==0){
+                
+              j=4.0/(h*2+1);
+                h++;
+              a-=j;
+                
+                    
+            }
+            
         }
+        
+            System.out.printf("%.4f",a);
+            
+             
+        	
     }
-}
-
-var result = "";
-for (var i = 0; i < n; i++) {
-    for (var j = 0; j <= i; j++) {
-        result += binomial[i][j] + " ";
-    }
-    result += "<br>";
 }
 ```
-![Alt homework5](./images/2026-09-08-151956.png)
+<img width="552" height="257" alt="image" src="https://github.com/user-attachments/assets/1f46af6d-4efe-4731-ab77-add1f4343513" />
 
 ### Homework5-2
 ```Java
@@ -150,22 +166,26 @@ public class HelloWorld {
 
 ### Homework6
 ```Java
-public class HelloWorld {
-    public static void main(String[] args) {
-        int n=6;
-         
-    for(int i=0; i<n;i++)
-        {
-            for( int j=0; j<n-i-1;j++){
-            System.out.printf(" ");}
-              int a =1;
-            for(int k=0;k<=i;k++){
-                System.out.printf("%-4d",a);
-                    a=a*(i-k)/(k+1);
-            }
-                 System.out.println();
+var n = 10;
+var binomial = [];
+
+for (var i = 0; i < n; i++) {
+    binomial[i] = [];
+    for (var j = 0; j <= i; j++) {
+        if (j === 0 || j === i) {
+            binomial[i][j] = 1;
+        } else {
+            binomial[i][j] = binomial[i - 1][j - 1] + binomial[i - 1][j];
         }
     }
+}
+
+var result = "";
+for (var i = 0; i < n; i++) {
+    for (var j = 0; j <= i; j++) {
+        result += binomial[i][j] + " ";
+    }
+    result += "<br>";
 }
 
 ```
