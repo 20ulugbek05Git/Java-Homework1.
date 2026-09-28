@@ -31,6 +31,33 @@ public class Homework1{
 ```
 ![Alt homework5](./images/2026-09-21-143847.png)
 
+
+### Homework３
+```Java
+public class HelloWorld {
+    public static void main(String[] args) {
+    	
+    	long prev = 1;
+        long curr = 1;
+        
+        for(int i = 2; i <= 20; i++) {
+            long next = prev + curr;
+            double ratio = (double) next / curr;
+            System.out.printf("%d/%d=%.3f  ", next, curr, ratio);
+            if((i - 1) % 4 == 0) {
+                System.out.println();
+            }
+            prev = curr;
+            curr = next;
+        }
+        System.out.println("\n");
+    }
+}
+```
+
+<img width="656" height="196" alt="image" src="https://github.com/user-attachments/assets/18a09a0a-6e93-406d-8921-429c9945e91b" />
+
+
 ### Homework4
 ```Java
 public class HelloWorld {
@@ -316,6 +343,7 @@ public static void main(String[] args) {
 	}
 }
 ```
+<img width="835" height="206" alt="image" src="https://github.com/user-attachments/assets/420060e4-a998-44c6-8838-0824b8254f9a" />
 
 ### Homework１３
 ```Java
