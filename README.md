@@ -24,7 +24,7 @@ public class Homework1{
       for(j=0; j<10; j++) {
         System.out.print("#");
       }
-      System.out.println("");
+      System.out.println(""); ggg
     }
   }
 }
