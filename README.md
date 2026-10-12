@@ -393,3 +393,66 @@ public class miniCalculator {
   }
 }
 ```
+
+### Homework１4
+```Java
+import java.util.Arrays;
+
+public class Numbers {
+    int[] num;
+
+    Numbers(int[] num) { this.num = num; }
+
+    double getTotal() {
+        double sum = 0;
+        for (int x : num) sum += x;
+        return sum;
+    }
+
+    double getArithmeticMean() { return getTotal() / num.length; }
+
+    // 조화평균
+    double getHarmonicMean() {
+        double sum = 0;
+        for (int x : num) sum += 1.0 / x;
+        return num.length / sum;
+    }
+
+    // 기하평균
+    double getGeometricMean() {
+        double logSum = 0;
+        for (int x : num) logSum += Math.log(x);
+        return Math.exp(logSum / num.length);
+    }
+
+    void sorting() { Arrays.sort(num); }
+
+    // 중앙값
+    int getMedian() {
+        sorting();
+        return num[num.length / 2];
+    }
+
+    // 도수분포표 & 히스토그램
+    void drawHistogram(int start, int end, int binCount, int scale) {
+        int binSize = (end - start) / binCount;
+        int[] bins = new int[binCount];
+
+        for (int x : num) {
+            int idx = (x - start) / binSize;
+            if (idx >= 0 && idx < binCount) bins[idx]++;
+        }
+
+        for (int i = 0; i < binCount; i++) {
+            System.out.printf("%d~%d: ", start + i * binSize, start + (i + 1) * binSize);
+            for (int j = 0; j < bins[i] / scale; j++) System.out.print("*");
+            System.out.println();
+        }
+    }
+
+    void display() {
+        for (int x : num) System.out.print(x + " ");
+        System.out.println();
+    }
+}
+```
