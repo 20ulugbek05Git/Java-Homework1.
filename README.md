@@ -368,91 +368,113 @@ public static void main(String[] args) {
 ### Homework１３
 ```Java
 import java.util.Scanner;
-public class miniCalculator {
-  public static void main(String[] args) {
-       Scanner scanner = new Scanner(System.in);
-    while(true) {
-    
-      String inputString = scanner.nextLine();
-      System.out.println(inputString);
-      String[] arr = inputString.split(" "); 
-      int result= Integer.parseInt(arr[0]);
-        for(int i=1; i<arr.length; i+=2){
-            String op=arr[i];
-            int num = Integer .parseInt(arr[i+1]);
-            if(op.equals("+"))result+=num;
-             if(op.equals("-"))result-=num;
-             if(op.equals("#"))result*=num;
-             if(op.equals("/"))result/=num;
-            
-        }
-      System.out.println(result);
 
-		
-	}
-  }
+public class miniCalculator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+            String inputString = scanner.nextLine();
+            
+            // Program exit condition
+            if (inputString.equalsIgnoreCase("exit")) {
+                break;
+            }
+            
+            System.out.println(inputString);
+            String[] arr = inputString.split(" ");
+            int result = 0;
+            
+            // Case 1: 2 operands and 1 operator (e.g., 2 + 3)
+            if (arr.length == 3) {
+                result = calculate(Integer.parseInt(arr[0]), arr[1], Integer.parseInt(arr[2]));
+            } 
+            // Case 2: 3 operands and 2 operators (e.g., 2 + 4 # 7)
+            else if (arr.length == 5) {
+                int num1 = Integer.parseInt(arr[0]);
+                String op1 = arr[1];
+                int num2 = Integer.parseInt(arr[2]);
+                String op2 = arr[3];
+                int num3 = Integer.parseInt(arr[4]);
+                
+                // Operator Precedence: if op2 is (# or /) and op1 is (+ or -), calculate op2 first!
+                if ((op2.equals("#") || op2.equals("/")) && (op1.equals("+") || op1.equals("-"))) {
+                    int temp = calculate(num2, op2, num3);
+                    result = calculate(num1, op1, temp);
+                } else {
+                    // Otherwise, calculate from left to right
+                    int temp = calculate(num1, op1, num2);
+                    result = calculate(temp, op2, num3);
+                }
+            }
+            
+            System.out.println(result);
+        }
+        scanner.close();
+    }
+
+    // Helper method to perform arithmetic operations
+    private static int calculate(int a, String op, int b) {
+        if (op.equals("+")) return a + b;
+        if (op.equals("-")) return a - b;
+        if (op.equals("#")) return a * b; // '#' acts as multiplication
+        if (op.equals("/")) return a / b; // '/' acts as division
+        return 0;
+    }
 }
+<img width="754" height="436" alt="image" src="https://github.com/user-attachments/assets/c7712908-d0e6-4b9e-8143-2ce3b1dc680b" />
+
 ```
 
 ### Homework１4
 ```Java
 import java.util.Arrays;
 
-public class Numbers {
-    int[] num;
+class Numbers {
+    int num[];
+    Numbers(int num[]) { this.num = num; }
 
-    Numbers(int[] num) { this.num = num; }
-
-    double getTotal() {
-        double sum = 0;
-        for (int x : num) sum += x;
-        return sum;
+    double getArithmaticMean() { 
+        return Arrays.stream(num).average().orElse(0); 
+    }
+    double getHarmonicMean() { 
+        return num.length / Arrays.stream(num).mapToDouble(x -> 1.0 / x).sum(); 
+    }
+    double getGeometricMean() { 
+        return Math.exp(Arrays.stream(num).mapToDouble(Math::log).sum() / num.length); 
+    }
+    int getMedian() { 
+        Arrays.sort(num); 
+        return num[num.length / 2]; 
     }
 
-    double getArithmeticMean() { return getTotal() / num.length; }
-
-    // 조화평균
-    double getHarmonicMean() {
-        double sum = 0;
-        for (int x : num) sum += 1.0 / x;
-        return num.length / sum;
-    }
-
-    // 기하평균
-    double getGeometricMean() {
-        double logSum = 0;
-        for (int x : num) logSum += Math.log(x);
-        return Math.exp(logSum / num.length);
-    }
-
-    void sorting() { Arrays.sort(num); }
-
-    // 중앙값
-    int getMedian() {
-        sorting();
-        return num[num.length / 2];
-    }
-
-    // 도수분포표 & 히스토그램
     void drawHistogram(int start, int end, int binCount, int scale) {
         int binSize = (end - start) / binCount;
         int[] bins = new int[binCount];
-
-        for (int x : num) {
-            int idx = (x - start) / binSize;
-            if (idx >= 0 && idx < binCount) bins[idx]++;
-        }
+        for (int n : num) if (n >= start && n < end) bins[(n - start) / binSize]++;
 
         for (int i = 0; i < binCount; i++) {
-            System.out.printf("%d~%d: ", start + i * binSize, start + (i + 1) * binSize);
+            System.out.printf("%3d ~ %3d : ", start + i * binSize, start + (i + 1) * binSize);
             for (int j = 0; j < bins[i] / scale; j++) System.out.print("*");
-            System.out.println();
+            System.out.println(" (" + bins[i] + ")");
         }
     }
+}
 
-    void display() {
-        for (int x : num) System.out.print(x + " ");
-        System.out.println();
+public class NumbersTest {
+    public static void main(String[] args) {
+        int data[] = new int[100];
+        for (int i = 0; i < 100; i++) data[i] = (int) (Math.random() * 100) + 1;
+
+        Numbers obj = new Numbers(data);
+        System.out.printf("Arithmetic Mean : %5.2f\n", obj.getArithmaticMean());
+        System.out.printf("Geometric Mean  : %5.2f\n", obj.getGeometricMean());
+        System.out.printf("Harmonic Mean   : %5.2f\n", obj.getHarmonicMean());
+        System.out.printf("Median Value    : %d\n", obj.getMedian());
+        obj.drawHistogram(0, 100, 10, 1);
     }
 }
+<img width="789" height="362" alt="image" src="https://github.com/user-attachments/assets/5776c223-e6f2-4073-b4d9-ae5a97ddff25" />
+
+
 ```
